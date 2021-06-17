@@ -1,0 +1,28 @@
+apply plugin: "maven"
+
+description = "rain-vertx-base 基础工具包"
+
+dependencies {
+    // okHttp3
+    implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
+    implementation("com.squareup.okio:okio:$okIoVersion")
+    runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+    runtimeOnly("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+}
+
+coverage {
+    excludeClasses = [
+    ]
+    excludePackages = [
+    ]
+}
+
+style {
+    excludePackages = [
+    ]
+    excludeClasses = [
+    ]
+}
+
+style.enabled = false
+coverage.enabled = false

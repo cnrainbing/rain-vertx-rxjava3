@@ -91,12 +91,6 @@ subprojects {
         // uuid
         implementation("com.fasterxml.uuid:java-uuid-generator:$javaUuidVersion")
 
-        // okHttp3
-        implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
-        implementation("com.squareup.okio:okio:$okIoVersion")
-        runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
-        runtimeOnly("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-
         implementation("org.jetbrains:annotations:$jetbrainsAnnotationsVersion")
     }
 

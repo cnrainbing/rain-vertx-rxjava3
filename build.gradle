@@ -1,5 +1,3 @@
-plugins {
-}
 
 subprojects {
     apply plugin: 'java'
@@ -106,8 +104,8 @@ subprojects {
         useJUnitPlatform()
     }
 
-    //apply from: "$rootDir/gradle/config/scripts/style.gradle"
-    //apply from: "$rootDir/gradle/config/scripts/coverage.gradle"
+    apply from: "$rootDir/gradle/config/scripts/style.gradle"
+    apply from: "$rootDir/gradle/config/scripts/coverage.gradle"
 }
 
 allprojects {
@@ -118,9 +116,10 @@ allprojects {
 apply from: "$rootDir/gradle/config/scripts/idea.gradle"
 
 wrapper {
-    gradleVersion = '7.1'
+    gradleVersion = '6.9'
 }
 
 subprojects {
     task allDeps(type: DependencyReportTask) {}
 }
+

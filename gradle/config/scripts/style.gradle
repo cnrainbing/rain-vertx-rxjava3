@@ -1,0 +1,30 @@
+class StyleExtension {
+    boolean enabled = true
+    List<String> excludePackages;
+    List<String> excludeClasses;
+}
+
+project.extensions.create('style', StyleExtension)
+
+apply plugin: 'checkstyle'
+
+checkstyle {
+    configFile = file("$rootDir/gradle/config/checkstyle/sun_checks.xml")
+    toolVersion = '8.21'
+}
+
+checkstyleTest.enabled = false
+style.enabled = false
+
+checkstyleMain.onlyIf {
+    style.enabled
+}
+checkstyleMain.doFirst {
+    style.excludePackages.each() {
+        checkstyleMain.exclude "${'**/' + it.replaceAll('\\.', '/') + '/*'}"
+    }
+
+    style.excludeClasses.each() {
+        checkstyleMain.exclude "${'**/' + it.replaceAll('\\.', '/') + '.java'}"
+    }
+}

@@ -1,0 +1,126 @@
+plugins {
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    group = 'org.rain.app'
+    version = '1.0.0.SNAPSHOT'//SNAPSHOT RELEASE
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+        options.compilerArgs = [
+                '-Xlint:unchecked',
+                '-Xlint:deprecation',
+                '-parameters'
+        ]
+    }
+
+    repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "http://mvnrepository.com/" }
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+        maven { url "https://repo.spring.io/libs-milestone" }
+        maven { url "https://repo.spring.io/release" }
+        maven { url "https://dl.bintray.com/gradle/gradle-plugins" }
+        gradlePluginPortal()
+        google()
+    }
+
+    configurations {
+        all*.exclude module: 'logback-classic'
+    }
+
+    dependencies {
+        // lombok
+        compileOnly("org.projectlombok:lombok:$lombokVersion")
+        annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+        implementation("org.projectlombok:lombok:$lombokVersion")
+
+        // Base
+        implementation("com.google.guava:guava:$guavaVersion")
+        implementation("org.apache.commons:commons-collections4:$commonsCollectionsVersion")
+        implementation("org.apache.commons:commons-lang3:$commonsLongVersion")
+        implementation("org.apache.commons:commons-text:$commonsTextVersion")
+        implementation("commons-io:commons-io:$commonsIOVersion")
+
+        // log4j2
+        implementation("org.apache.logging.log4j:log4j-core:$log4j2Version")
+        implementation("org.apache.logging.log4j:log4j-api:$log4j2Version")
+
+        // Library
+        implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+        implementation("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
+        implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
+        implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
+        implementation("com.fasterxml.jackson.datatype:jackson-datatype-eclipse-collections:$jacksonVersion")
+        implementation("com.fasterxml.jackson.datatype:jackson-datatype-hppc:$jacksonVersion")
+        implementation("com.fasterxml.jackson.datatype:jackson-datatype-guava:$jacksonVersion")
+        implementation("com.fasterxml.jackson.module:jackson-module-parameter-names:$jacksonVersion")
+        implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
+        implementation("org.eclipse.collections:eclipse-collections-api:$eclipseCollectionVersion")
+        implementation("org.eclipse.collections:eclipse-collections:$eclipseCollectionVersion")
+        implementation("org.eclipse.collections:eclipse-collections-forkjoin:$eclipseCollectionVersion")
+
+        // 内存MQ
+        implementation("com.lmax:disruptor:$disruptorVersion")
+
+        // 内存缓存
+        implementation("com.github.ben-manes.caffeine:caffeine:$caffeineVersion")
+
+        // vavr
+        implementation("io.vavr:vavr:$vavrVersion")
+        implementation("io.vavr:vavr-match:$vavrVersion")
+
+        // jctools
+        implementation("org.jctools:jctools-core:$jctoolsVersion")
+
+        // hppc
+        implementation("com.carrotsearch:hppc:$hppcVersion")
+
+        // 内存搜索
+        implementation("com.googlecode.cqengine:cqengine:$cqengineVersion")
+
+        // time
+        implementation("joda-time:joda-time:$jodaTimeVersion")
+
+        // uuid
+        implementation("com.fasterxml.uuid:java-uuid-generator:$javaUuidVersion")
+
+        // okHttp3
+        implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
+        implementation("com.squareup.okio:okio:$okIoVersion")
+        runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+        runtimeOnly("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+
+        implementation("org.jetbrains:annotations:$jetbrainsAnnotationsVersion")
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    //apply from: "$rootDir/gradle/config/scripts/style.gradle"
+    //apply from: "$rootDir/gradle/config/scripts/coverage.gradle"
+}
+
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'project-report'
+}
+
+apply from: "$rootDir/gradle/config/scripts/idea.gradle"
+
+wrapper {
+    gradleVersion = '7.1'
+}
+
+subprojects {
+    task allDeps(type: DependencyReportTask) {}
+}

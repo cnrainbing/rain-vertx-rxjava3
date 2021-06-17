@@ -1,0 +1,14 @@
+out/
+build/
+*.iml
+*.ipr
+*.iws
+.gradle
+.project
+.settings/
+.classpath
+.idea
+.arcconfig
+**/allure-results
+**/bin
+**/.DS_Store

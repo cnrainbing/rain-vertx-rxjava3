@@ -47,6 +47,7 @@ subprojects {
         implementation("org.apache.commons:commons-lang3:$commonsLongVersion")
         implementation("org.apache.commons:commons-text:$commonsTextVersion")
         implementation("commons-io:commons-io:$commonsIOVersion")
+        implementation("org.apache.commons:commons-pool2:$commonsPool2Version")
 
         // log4j2
         implementation("org.apache.logging.log4j:log4j-core:$log4j2Version")

@@ -3,6 +3,21 @@ apply plugin: "maven"
 description = "rain-vertx-base 基础工具包"
 
 dependencies {
+    // crypto
+    implementation("org.bouncycastle:bcprov-jdk15on:$bouncyCastleVersion")
+    implementation("org.bouncycastle:bcpkix-jdk15on:$bouncyCastleVersion")
+    implementation("org.bouncycastle:bcpg-jdk15on:$bouncyCastleVersion")
+
+    // typesafe config
+    implementation("com.typesafe:config:$typesafeConfigVersion")
+
+    // fst
+    implementation("de.ruedigermoeller:fst:$fstVersion")
+    implementation("com.esotericsoftware:kryo:$kryoVersion")
+
+    // rocksdb
+    implementation("org.rocksdb:rocksdbjni:$rocksdbVersion")
+
     // okHttp3
     implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
     implementation("com.squareup.okio:okio:$okIoVersion")

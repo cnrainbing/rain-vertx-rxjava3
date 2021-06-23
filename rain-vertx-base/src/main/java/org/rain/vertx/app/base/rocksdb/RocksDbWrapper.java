@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
 import org.rocksdb.ColumnFamilyDescriptor;
 import org.rocksdb.ColumnFamilyHandle;
@@ -24,8 +25,6 @@ import org.rocksdb.RocksIterator;
 import org.rocksdb.WriteBatch;
 import org.rocksdb.WriteBatchWithIndex;
 import org.rocksdb.WriteOptions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Wrapper around {@link RocksDB} instance.
@@ -34,6 +33,7 @@ import org.slf4j.LoggerFactory;
  * @see https://github.com/facebook/rocksdb/wiki/RocksJava-Basics
  * @since 0.8.0
  */
+@Log4j2
 public class RocksDbWrapper implements AutoCloseable {
     static {
         RocksDB.loadLibrary();
@@ -191,7 +191,8 @@ public class RocksDbWrapper implements AutoCloseable {
     }
     /*----------------------------------------------------------------------*/
 
-    private final Logger LOGGER = LoggerFactory.getLogger(RocksDbWrapper.class);
+    //private final Logger LOGGER = LoggerFactory.getLogger(RocksDbWrapper.class);
+    //private final org.apache.logging.log4j.Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger(RocksDbWrapper.class);
 
     private File directory;
     private final boolean readOnly;
@@ -308,7 +309,7 @@ public class RocksDbWrapper implements AutoCloseable {
         try {
             RocksDbUtils.closeRocksObjects(iterators.values().toArray(new RocksIterator[0]));
         } catch (Exception e) {
-            LOGGER.warn(e.getMessage(), e);
+            log.warn(e.getMessage(), e);
         }
 
         if (myOwnReadOptions) {
@@ -327,7 +328,7 @@ public class RocksDbWrapper implements AutoCloseable {
             RocksDbUtils.closeRocksObjects(
                     columnFamilyHandles.values().toArray(new ColumnFamilyHandle[0]));
         } catch (Exception e) {
-            LOGGER.warn(e.getMessage(), e);
+            log.warn(e.getMessage(), e);
         }
 
         RocksDbUtils.closeRocksObjects(rocksDb);
@@ -337,7 +338,7 @@ public class RocksDbWrapper implements AutoCloseable {
 
     synchronized public RocksDbWrapper init() throws IOException, RocksDbException {
         if (inited) {
-            LOGGER.warn("This wrapper has been already initialized");
+            log.warn("This wrapper has been already initialized");
             return this;
         }
 

@@ -1,0 +1,24 @@
+apply plugin: "maven"
+
+description = "rain-vertx-redis 缓存工具包"
+
+dependencies {
+    implementation("org.redisson:redisson:$redissonVersion")
+}
+
+coverage {
+    excludeClasses = [
+    ]
+    excludePackages = [
+    ]
+}
+
+style {
+    excludePackages = [
+    ]
+    excludeClasses = [
+    ]
+}
+
+style.enabled = false
+coverage.enabled = false

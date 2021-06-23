@@ -36,6 +36,11 @@ subprojects {
     }
 
     dependencies {
+        implementation(project(':rain-vertx-base'))
+
+        // guice ioc
+        implementation("com.google.inject:guice:$guiceVersionn")
+
         // lombok
         compileOnly("org.projectlombok:lombok:$lombokVersion")
         annotationProcessor("org.projectlombok:lombok:$lombokVersion")

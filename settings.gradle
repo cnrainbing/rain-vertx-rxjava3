@@ -1,3 +1,4 @@
 rootProject.name = 'rain-vertx-rxjava3'
 include 'rain-vertx-base'
+include 'rain-vertx-redis'
 

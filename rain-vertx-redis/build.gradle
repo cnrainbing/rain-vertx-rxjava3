@@ -1,5 +1,8 @@
-apply plugin: "maven"
-
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
 description = "rain-vertx-redis 缓存工具包"
 
 dependencies {

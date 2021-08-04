@@ -1,5 +1,9 @@
-apply plugin: "maven"
-
+//https://docs.gradle.org/current/userguide/publishing_maven.html
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
 description = "rain-vertx-base 基础工具包"
 
 dependencies {

@@ -4,11 +4,12 @@ subprojects {
 
     group = 'org.rain.app'
     version = '1.0.0.SNAPSHOT'//SNAPSHOT RELEASE
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
+        options.fork = true
         options.compilerArgs = [
                 '-Xlint:unchecked',
                 '-Xlint:deprecation',
@@ -37,7 +38,7 @@ subprojects {
     }
 
     dependencies {
-        implementation(project(':rain-vertx-base'))
+        //implementation(project(':rain-vertx-base'))
 
         // guice ioc
         implementation("com.google.inject:guice:$guiceVersionn")
@@ -117,7 +118,7 @@ allprojects {
 apply from: "$rootDir/gradle/config/scripts/idea.gradle"
 
 wrapper {
-    gradleVersion = '7.1'
+    gradleVersion = '7.4.2'
 }
 
 subprojects {

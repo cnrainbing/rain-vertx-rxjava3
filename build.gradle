@@ -4,8 +4,8 @@ subprojects {
 
     group = 'org.rain.app'
     version = '1.0.0.SNAPSHOT'//SNAPSHOT RELEASE
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
@@ -18,7 +18,7 @@ subprojects {
     }
 
     repositories {
-        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+        //maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
         mavenLocal()
         mavenCentral()
         maven { url "https://plugins.gradle.org/m2/" }

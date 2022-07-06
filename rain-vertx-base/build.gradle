@@ -6,6 +6,12 @@ plugins {
 }
 description = "rain-vertx-base 基础工具包"
 
+javadoc.options.encoding = 'UTF-8'
+java{
+    withJavadocJar()
+    withSourcesJar()
+}
+
 dependencies {
     // crypto
     implementation("org.bouncycastle:bcprov-jdk15on:$bouncyCastleVersion")
